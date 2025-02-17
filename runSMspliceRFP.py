@@ -176,6 +176,10 @@ trainGenes = np.setdiff1d(trainGenes, validationGenes)
 if len(trainGenes) > train_size: trainGenes = np.random.choice(trainGenes, train_size, replace=False)
 # print(len(trainGenes),len(validationGenes),len(testGenes))
 
+if not args.learn_sres:
+    testGenes = genes.keys()
+    print(len(testGenes))
+
 canonical_phases = {}
 cannonical_annotations = {}
 annotations = {}
@@ -1506,7 +1510,8 @@ if args.save_parameters:
 
 # Filter test set
 lengthsOfGenes = np.array([len(str(genes[gene].seq)) for gene in testGenes])
-testGenes = testGenes[lengthsOfGenes > sreEffect3_intron]
+if args.learn_sres:
+    testGenes = testGenes[lengthsOfGenes > sreEffect3_intron]
 
 notShortIntrons = []
 
@@ -1526,7 +1531,8 @@ for gene in testGenes:
 
 notShortIntrons = np.array(notShortIntrons)
 
-testGenes = testGenes[notShortIntrons]
+if args.learn_sres:
+    testGenes = testGenes[notShortIntrons]
 if args.threads > 0:
     testGenes = order_genes(testGenes, args.threads, genes)
 lengths = np.array([len(str(genes[gene].seq)) for gene in testGenes])
