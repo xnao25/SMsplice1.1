@@ -1,4 +1,4 @@
-# SMSplice1.1
+# SMplice1.1
 SMsplice1.1 is a hidden semi-Markov model based RNA splicing prediction model. It is an upgrade from the original [SMsplice model](https://github.com/kmccue/SMsplice) by allowing exonic and intronic SRE scores to be calculated from 3'SS and 5'SS separately, with additional options to use coding information to improve prediction performances.
 ## Dependencies
 Install [awkde](https://github.com/mennthor/awkde)  
